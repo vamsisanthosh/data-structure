@@ -1,0 +1,75 @@
+#include<stdio.h>
+#include<string.h>
+#define MAX 50
+char stack_array[MAX];
+int top=-1;
+char pop();
+int isfull();
+int isempty();
+char push(char i)
+{
+    int c=isfull();
+    if(c==1)
+    {
+        printf("overflow");
+    }
+    else
+    {
+        top=top+1;
+        stack_array[top]=i;
+    }
+}
+char pop()
+{
+    int c=isempty();
+    if(c==1)
+    {
+        printf("underflow");
+    }
+    else
+    {
+        c=stack_array[top];
+        top=top-1;
+    }
+    return c;
+}
+int isfull()
+{
+    //printf("%d",top);
+    if(top==MAX-1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+int isempty()
+{
+    
+    if(top==-1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+int main()
+{
+    char a[50],c;
+    int i;
+    printf("enter the word");
+    gets(a);
+    for(i=0;i<strlen(a);i++)
+    {
+        push(a[i]);
+    }
+    for(i=0;i<strlen(a);i++)
+    {
+        a[i]=pop();
+    }
+    puts(a);
+}
